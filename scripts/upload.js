@@ -58,11 +58,11 @@
       .then(function (img) {
         document.getElementById('preview').appendChild(img);
       });
-    watermark([file])
-      .image(function(target) { return target;  })
-      .then(function (img) {
-        document.getElementById('preview').appendChild(img);
-      });      
+    // watermark([file])
+    //   .image(function(target) { return target;  })
+    //   .then(function (img) {
+    //     document.getElementById('preview').appendChild(img);
+    //   });      
   }
 
   /**
