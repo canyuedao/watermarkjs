@@ -49,6 +49,7 @@
    */
   function setTarget(file) {
     enableFields(['watermark-button']);
+    enableFields(['watermark-text-button']);
     Array.prototype.forEach.call(document.querySelectorAll('input[type=radio]'), function (radio) {
       radio.removeAttribute('disabled');
     });
@@ -57,6 +58,11 @@
       .then(function (img) {
         document.getElementById('preview').appendChild(img);
       });
+    watermark([file])
+      .image(function(target) { return target;  })
+      .then(function (img) {
+        document.getElementById('preview').appendChild(img);
+      });      
   }
 
   /**
@@ -66,6 +72,7 @@
     var preview = document.getElementById('preview'),
         img = preview.querySelector('img'),
         position = document.querySelector('input[type=radio]:checked').value;
+        text = document.getElementById('watermark-text').value;
 
     if (! original) {
       original = img;
@@ -77,6 +84,16 @@
         preview.replaceChild(marked, img);
         enableFields(awsFields);
       });
+
+    if(text !== "")
+    {
+      watermark([original, file])
+        .image(watermark.text[position](0.5))
+        .then(function(marked) {
+          preview.replaceChild(marked, img);
+          enableFields(awsFields);
+        });
+    }  
   }
 
   /**

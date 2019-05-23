@@ -4,26 +4,24 @@
 <head>
   <meta charset="utf-8">
   <title>watermark.js - watermarks in the browser</title>
-  <script src="scripts/polyfill.js"></script>
-  <script src="scripts/watermark.js"></script>
-  <script src="scripts/upload.js"></script>
+  <script src="/scripts/watermark.js"></script>
+  <script src="/scripts/upload.js"></script>
   <link href='http://fonts.googleapis.com/css?family=Josefin+Slab|Maven+Pro' rel='stylesheet' type='text/css'>
   <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css" rel="stylesheet">
-  <link rel="stylesheet" href="css/bootstrap-theme.min.css" />
-  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="/css/bootstrap-theme.min.css" />
+  <link rel="stylesheet" href="/css/style.css" />
   <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.5/styles/default.min.css">
 </head>
 
 <body>
-  <a class="hidden-sm hidden-xs" href="https://github.com/brianium/watermarkjs"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://camo.githubusercontent.com/38ef81f8aca64bb9a64448d0d70f1308ef5341ab/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6461726b626c75655f3132313632312e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png"></a>
   <div class="container">
 
-    <h1 class="text-center"><a href="/watermarkjs/">watermark.js</a></h1>
+    <h1 class="text-center"><a href="/">watermark.js</a></h1>
     <nav>
       <ul>
-        <li><a href="images.html">images</a></li>
+        <li><a href="/images.html">images</a></li>
         <li class="separator">-</li>
-        <li><a href="text.html">text</a></li>
+        <li><a href="/text.html">text</a></li>
         <li class="separator">-</li>
         <li><a href="#">uploading</a></li>
         <li class="separator">-</li>
@@ -74,6 +72,17 @@
           </div>
           <span class="help-block">
             Select the watermark image
+          </span>
+          <div class="input-group">
+            <span class="input-group-btn">
+              <span id="watermark-text-button" type="button" class="btn btn-primary btn-file" disabled>
+                Browse&hellip; <input type="text" id="watermark-text">
+              </span>
+            </span>
+            <input type="text" class="form-control" id="watermark-text-name" readonly>
+          </div>
+          <span class="help-block">
+            Input the watermark text
           </span>
           <div class="input-group">
             <h3>Position</h3>
