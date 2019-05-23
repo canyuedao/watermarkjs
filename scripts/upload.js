@@ -71,29 +71,45 @@
   function setWatermark(file) {
     var preview = document.getElementById('preview'),
         img = preview.querySelector('img'),
-        position = document.querySelector('input[type=radio]:checked').value;
-        text = document.getElementById('watermark-text').value;
+        position = document.querySelector('input[type=radio]:checked').value,
+        textPosition = document.querySelector('input[name=text-position]:checked').value,
+        strText = document.getElementById('watermark-text-name').value;
 
     if (! original) {
       original = img;
     }
 
-    watermark([original, file])
-      .image(watermark.image[position](0.5))
+    if(!file)
+    {
+      watermark([original])
+      .image(watermark.text[textPosition](strText, '48px Josefin Slab', '#fff', 0.5))
       .then(function(marked) {
         preview.replaceChild(marked, img);
         enableFields(awsFields);
       });
-
-    if(text !== "")
+    }
+    else
     {
       watermark([original, file])
-        .image(watermark.text[position](0.5))
-        .then(function(marked) {
-          preview.replaceChild(marked, img);
-          enableFields(awsFields);
-        });
-    }  
+      .image(watermark.image[position](0.5))
+      .render()
+      .image(watermark.text[textPosition](strText, '48px Josefin Slab', '#fff', 0.5))
+      .then(function(marked) {
+        preview.replaceChild(marked, img);
+        enableFields(awsFields);
+      });
+    }
+
+
+    // if(strText !== "")
+    // {
+    //   watermark([original])
+    //     .image(watermark.text[position](strText, '48px Josefin Slab', '#fff', 0.5, 48))
+    //     .then(function(marked) {
+    //       preview.replaceChild(marked, img);
+    //       enableFields(awsFields);
+    //     });
+    // }  
   }
 
   /**
@@ -101,7 +117,8 @@
    */
   function isWatermarkSelected() {
     var watermark = document.getElementById('watermark-name');
-    return !!watermark.value;
+    var textWatermark = document.getElementById('watermark-text-name');
+    return (!!watermark.value || !!textWatermark.value);
   }
 
   /**

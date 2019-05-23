@@ -7,8 +7,10 @@
   <script src="scripts/polyfill.js"></script>
   <script src="scripts/watermark.js"></script>
   <script src="scripts/upload.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.5/highlight.min.js"></script>
   <link href='http://fonts.googleapis.com/css?family=Josefin+Slab|Maven+Pro' rel='stylesheet' type='text/css'>
   <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="css/bootstrap.min.css" />
   <link rel="stylesheet" href="css/bootstrap-theme.min.css" />
   <link rel="stylesheet" href="css/style.css" />
   <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.5/styles/default.min.css">
@@ -78,16 +80,16 @@
           <div class="input-group">
             <span class="input-group-btn">
               <span id="watermark-text-button" type="button" class="btn btn-primary btn-file" disabled>
-                Browse&hellip; <input type="text" id="watermark-text">
+                Browse&hellip;
               </span>
             </span>
-            <input type="text" class="form-control" id="watermark-text-name" readonly>
+            <input type="text" class="form-control" id="watermark-text-name">
           </div>
           <span class="help-block">
             Input the watermark text
           </span>
           <div class="input-group">
-            <h3>Position</h3>
+            <h3>Image Position</h3>
             <div class="row">
               <div class="col-xs-6">
                 <div class="radio">
@@ -110,6 +112,30 @@
               </div>
             </div>
           </div>
+          <div class="input-group">
+              <h3>Text Position</h3>
+              <div class="row">
+                <div class="col-xs-6">
+                  <div class="radio">
+                    <label><input type="radio" name="text-position" value="lowerRight" checked disabled>Lower Right</label>
+                  </div>
+                  <div class="radio">
+                    <label><input type="radio" name="text-position" value="lowerLeft" disabled>Lower Left</label>
+                  </div>
+                  <div class="radio">
+                    <label><input type="radio" name="text-position" value="upperRight" disabled>Upper Right</label>
+                  </div>
+                </div>
+                <div class="col-xs-6">
+                  <div class="radio">
+                    <label><input type="radio" name="text-position" value="upperLeft" disabled>Upper Left</label>
+                  </div>
+                  <div class="radio">
+                    <label><input type="radio" name="text-position" value="center" disabled>Center</label>
+                  </div>
+                </div>
+              </div>
+            </div>
 
           <h3>Amazon S3 Info</h3>
           <div class="form-group">
