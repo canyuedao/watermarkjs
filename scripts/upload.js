@@ -56,7 +56,9 @@
     watermark([file])
       .image(function(target) { return target;  })
       .then(function (img) {
-        if(! original)
+        var data = {};
+        var arr = original.keys(data);
+        if(arr.length == 0)
         {
           document.getElementById('preview').appendChild(img);          
         }
