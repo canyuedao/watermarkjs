@@ -8,7 +8,7 @@
   <script src="scripts/watermark.js"></script>
   <script src="scripts/upload.js"></script>
   <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.5/highlight.min.js"></script>
-  <link href='https://fonts.googleapis.com/css?family=Josefin+Slab|Maven+Pro' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Josefin+Slab|Maven+Pro|Roboto|Noto+Sans+SC|Noto+Serif+SC|ZCOOL+XiaoWei|ZCOOL+KuaiLe|ZCOOL+QingKe+HuangYou' rel='stylesheet' type='text/css'>
   <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="css/bootstrap.min.css" />
   <link rel="stylesheet" href="css/bootstrap-theme.min.css" />
@@ -64,9 +64,9 @@
             </span>
             <input type="text" class="form-control" readonly>
           </div>
-          <span class="help-block">
+          <!-- <span class="help-block">
             Select the image to watermark
-          </span>
+          </span> -->
           <div class="input-group">
             <span class="input-group-btn">
               <span id="watermark-button" type="button" class="btn btn-primary btn-file" disabled>
@@ -75,9 +75,14 @@
             </span>
             <input type="text" class="form-control" id="watermark-name" readonly>
           </div>
-          <span class="help-block">
+          <div class="input-group">
+            <input type="text" class="col-xs-6" id="watermark-image-x" value="0">
+            <input type="text" class="col-xs-6" id="watermark-image-y" value="0">
+            <input type="text" class="col-xs-6" id="watermark-image-alpha" value="0.5">           
+          </div>
+          <!-- <span class="help-block">
             Select the watermark image
-          </span>
+          </span> -->
           <div class="input-group">
             <span class="input-group-btn">
               <span id="watermark-text-button" type="button" class="btn btn-primary btn-file" disabled>
@@ -86,15 +91,66 @@
             </span>
             <input type="text" class="form-control" id="watermark-text-name" value="小C驻留地 https://xcshare.com">
           </div>
-          <span class="help-block">
+          <!-- <span class="help-block">
             Input the watermark text
-          </span>
+          </span> -->
+          <div class="input-group">
+            <input type="text" class="col-xs-6" id="watermark-text-x" value="0">
+            <input type="text" class="col-xs-6" id="watermark-text-y" value="0">
+            <input type="text" class="col-xs-6" id="watermark-text-size" value="48">
+            <input type="text" class="col-xs-6" id="watermark-text-color" value="#ffffff">
+            <input type="text" class="col-xs-6" id="watermark-text-alpha" value="0.5">
+            <select class="col-xs-6" id="watermark-text-font">  
+                <option name="text-font">Josefin Slab</option>  
+                <option name="text-font">Maven Pro</option>  
+                <option name="text-font">Roboto</option>  
+                <option name="text-font">Noto Sans SC</option>  
+                <option name="text-font">Noto Serif SC</option>  
+                <option name="text-font">ZCOOL XiaoWei</option>  
+                <option name="text-font">ZCOOL KuaiLe</option>  
+                <option name="text-font">ZCOOL QingKe HuangYou</option>  
+            </select>              
+          </div>
+          <!-- <span class="help-block">
+            watermark text setting
+          </span> -->
+          <div class="input-group">
+            <span class="input-group-btn">
+              <span id="watermark-text-button2" type="button" class="btn btn-primary btn-file" disabled>
+                Browse&hellip;
+              </span>
+            </span>
+            <input type="text" class="form-control" id="watermark-text-name2" value="">
+          </div>
+          <!-- <span class="help-block">
+            Input the watermark text
+          </span> -->
+          <div class="input-group">
+            <input type="text" class="col-xs-6" id="watermark-text-x2" value="0">
+            <input type="text" class="col-xs-6" id="watermark-text-y2" value="0">
+            <input type="text" class="col-xs-6" id="watermark-text-size2" value="48">
+            <input type="text" class="col-xs-6" id="watermark-text-color2" value="#ffffff">
+            <input type="text" class="col-xs-6" id="watermark-text-alpha2" value="0.5">
+            <select class="col-xs-6" id="watermark-text-font2">  
+                <option name="text-font2">Josefin Slab</option>  
+                <option name="text-font2">Maven Pro</option>  
+                <option name="text-font2">Roboto</option>  
+                <option name="text-font2">Noto Sans SC</option>  
+                <option name="text-font2">Noto Serif SC</option>  
+                <option name="text-font2">ZCOOL XiaoWei</option>  
+                <option name="text-font2">ZCOOL KuaiLe</option>  
+                <option name="text-font2">ZCOOL QingKe HuangYou</option>  
+            </select>              
+          </div>
+          <!-- <span class="help-block">
+            watermark text setting
+          </span> -->
           <div class="input-group">
             <h3>Image Position</h3>
             <div class="row">
               <div class="col-xs-6">
                 <div class="radio">
-                  <label><input type="radio" name="position" value="lowerRight" checked disabled>Lower Right</label>
+                  <label><input type="radio" name="position" value="lowerRight" disabled>Lower Right</label>
                 </div>
                 <div class="radio">
                   <label><input type="radio" name="position" value="lowerLeft" disabled>Lower Left</label>
@@ -105,7 +161,7 @@
               </div>
               <div class="col-xs-6">
                 <div class="radio">
-                  <label><input type="radio" name="position" value="upperLeft" disabled>Upper Left</label>
+                  <label><input type="radio" name="position" value="upperLeft" checked disabled>Upper Left</label>
                 </div>
                 <div class="radio">
                   <label><input type="radio" name="position" value="center" disabled>Center</label>
@@ -118,7 +174,7 @@
               <div class="row">
                 <div class="col-xs-6">
                   <div class="radio">
-                    <label><input type="radio" name="text-position" value="lowerRight" checked disabled>Lower Right</label>
+                    <label><input type="radio" name="text-position" value="lowerRight" disabled>Lower Right</label>
                   </div>
                   <div class="radio">
                     <label><input type="radio" name="text-position" value="lowerLeft" disabled>Lower Left</label>
@@ -129,7 +185,7 @@
                 </div>
                 <div class="col-xs-6">
                   <div class="radio">
-                    <label><input type="radio" name="text-position" value="upperLeft" disabled>Upper Left</label>
+                    <label><input type="radio" name="text-position" value="upperLeft" checked disabled>Upper Left</label>
                   </div>
                   <div class="radio">
                     <label><input type="radio" name="text-position" value="center" disabled>Center</label>
@@ -137,6 +193,69 @@
                 </div>
               </div>
             </div>
+
+          <div class="input-group">
+            <span class="input-group-btn">
+              <span id="watermark-text-button3" type="button" class="btn btn-primary btn-file" disabled>
+                Browse&hellip;
+              </span>
+            </span>
+            <input type="text" class="form-control" id="watermark-text-name3" value="">
+          </div>
+          <!-- <span class="help-block">
+            Input the watermark text
+          </span> -->
+          <div class="input-group">
+            <input type="text" class="col-xs-6" id="watermark-text-x3" value="0">
+            <input type="text" class="col-xs-6" id="watermark-text-y3" value="0">
+            <input type="text" class="col-xs-6" id="watermark-text-size3" value="48">
+            <input type="text" class="col-xs-6" id="watermark-text-color3" value="#ffffff">
+            <input type="text" class="col-xs-6" id="watermark-text-alpha3" value="0.5">
+            <select class="col-xs-6" id="watermark-text-font3">  
+                <option name="text-font3">Josefin Slab</option>  
+                <option name="text-font3">Maven Pro</option>  
+                <option name="text-font3">Roboto</option>  
+                <option name="text-font3">Noto Sans SC</option>  
+                <option name="text-font3">Noto Serif SC</option>  
+                <option name="text-font3">ZCOOL XiaoWei</option>  
+                <option name="text-font3">ZCOOL KuaiLe</option>  
+                <option name="text-font3">ZCOOL QingKe HuangYou</option>  
+            </select>              
+          </div>
+          <!-- <span class="help-block">
+            watermark text setting
+          </span> -->
+          <div class="input-group">
+            <span class="input-group-btn">
+              <span id="watermark-text-button4" type="button" class="btn btn-primary btn-file" disabled>
+                Browse&hellip;
+              </span>
+            </span>
+            <input type="text" class="form-control" id="watermark-text-name4" value="">
+          </div>
+          <!-- <span class="help-block">
+            Input the watermark text
+          </span> -->
+          <div class="input-group">
+            <input type="text" class="col-xs-6" id="watermark-text-x4" value="0">
+            <input type="text" class="col-xs-6" id="watermark-text-y4" value="0">
+            <input type="text" class="col-xs-6" id="watermark-text-size4" value="48">
+            <input type="text" class="col-xs-6" id="watermark-text-color4" value="#ffffff">
+            <input type="text" class="col-xs-6" id="watermark-text-alpha4" value="0.5">
+            <select class="col-xs-6" id="watermark-text-font4">  
+                <option name="text-font4">Josefin Slab</option>  
+                <option name="text-font4">Maven Pro</option>  
+                <option name="text-font4">Roboto</option>  
+                <option name="text-font4">Noto Sans SC</option>  
+                <option name="text-font4">Noto Serif SC</option>  
+                <option name="text-font4">ZCOOL XiaoWei</option>  
+                <option name="text-font4">ZCOOL KuaiLe</option>  
+                <option name="text-font4">ZCOOL QingKe HuangYou</option>  
+            </select>              
+          </div>
+          <!-- <span class="help-block">
+            watermark text setting
+          </span> -->
 
           <h3>Amazon S3 Info</h3>
           <div class="form-group">

@@ -50,24 +50,26 @@
   function setTarget(file) {
     enableFields(['watermark-button']);
     enableFields(['watermark-text-button']);
+    enableFields(['watermark-text-button2']);
+    enableFields(['watermark-text-button3']);
+    enableFields(['watermark-text-button4']);
     Array.prototype.forEach.call(document.querySelectorAll('input[type=radio]'), function (radio) {
       radio.removeAttribute('disabled');
     });
     watermark([file])
       .image(function(target) { return target;  })
-      .then(function (img) {
-        var data = {};
-        var arr = original.keys(data);
-        if(arr.length == 0)
+      .then(function (img) { 
+        console.log(typeof original);             
+        if(! original)
         {
-          document.getElementById('preview').appendChild(img);          
+          document.getElementById('preview').appendChild(img);                      
         }
         else
         {
           var oldimg = document.getElementById('preview').querySelector('img');
-          document.getElementById('preview').replaceChild(img, oldimg);
+          document.getElementById('preview').replaceChild(img, oldimg); 
         } 
-        // original = img;       
+        original = img;       
       });
     // watermark([file])
     //   .image(function(target) { return target;  })
@@ -84,31 +86,145 @@
         img = preview.querySelector('img'),
         position = document.querySelector('input[type=radio]:checked').value,
         textPosition = document.querySelector('input[name=text-position]:checked').value,
-        strText = document.getElementById('watermark-text-name').value;
+        strText = document.getElementById('watermark-text-name').value,
+        strTextSize = document.getElementById('watermark-text-size').value,
+        strTextColor = document.getElementById('watermark-text-color').value,
+        strTextFont = document.getElementById('watermark-text-font').value,
+        fImgAlpha = parseFloat(document.getElementById('watermark-image-alpha').value),
+        fImgPosX = parseFloat(document.getElementById('watermark-image-x').value),
+        fImgPosY = parseFloat(document.getElementById('watermark-image-y').value),
+        fAlpha = parseFloat(document.getElementById('watermark-text-alpha').value),
+        fPosX = parseFloat(document.getElementById('watermark-text-x').value),
+        fPosY = parseFloat(document.getElementById('watermark-text-y').value),
+
+        strText2 = document.getElementById('watermark-text-name2').value,
+        strTextSize2 = document.getElementById('watermark-text-size2').value,
+        strTextColor2 = document.getElementById('watermark-text-color2').value,
+        strTextFont2 = document.getElementById('watermark-text-font2').value,
+        fAlpha2 = parseFloat(document.getElementById('watermark-text-alpha2').value),
+        fPosX2 = parseFloat(document.getElementById('watermark-text-x2').value),
+        fPosY2 = parseFloat(document.getElementById('watermark-text-y2').value),
+
+        strText3 = document.getElementById('watermark-text-name3').value,
+        strTextSize3 = document.getElementById('watermark-text-size3').value,
+        strTextColor3 = document.getElementById('watermark-text-color3').value,
+        strTextFont3 = document.getElementById('watermark-text-font3').value,
+        fAlpha3 = parseFloat(document.getElementById('watermark-text-alpha3').value),
+        fPosX3 = parseFloat(document.getElementById('watermark-text-x3').value),
+        fPosY3 = parseFloat(document.getElementById('watermark-text-y3').value),
+
+        strText4 = document.getElementById('watermark-text-name4').value,
+        strTextSize4 = document.getElementById('watermark-text-size4').value,
+        strTextColor4 = document.getElementById('watermark-text-color4').value,
+        strTextFont4 = document.getElementById('watermark-text-font4').value,
+        fAlpha4 = parseFloat(document.getElementById('watermark-text-alpha4').value),
+        fPosX4 = parseFloat(document.getElementById('watermark-text-x4').value),
+        fPosY4 = parseFloat(document.getElementById('watermark-text-y4').value);
 
     if (! original) {
       original = img;
+      console.log(typeof img);      
+      console.log(typeof original);      
     }
+
+    var bDefinedPosXY = false;
+    if(fPosX != 0 || fPosY != 0)
+    {
+      bDefinedPosXY = true;
+    }
+
+    var imgX = function(boat, metrics, context) {
+      return fImgPosX;
+    };    
+    var imgY = function(boat, metrics, context) {
+      return fImgPosY;
+    };
+
+    var x = function(boat, metrics, context) {
+      return fPosX;
+    };    
+    var y = function(boat, metrics, context) {
+      return fPosY;
+    };
+
+    var x2 = function(boat, metrics, context) {
+      return fPosX2;
+    };    
+    var y2 = function(boat, metrics, context) {
+      return fPosY2;
+    };
+
+    var x3 = function(boat, metrics, context) {
+      return fPosX3;
+    };    
+    var y3 = function(boat, metrics, context) {
+      return fPosY3;
+    };
+
+    var x4 = function(boat, metrics, context) {
+      return fPosX4;
+    };    
+    var y4 = function(boat, metrics, context) {
+      return fPosY4;
+    };
 
     if(!file)
     {
-      watermark([original])
-      .image(watermark.text[textPosition](strText, '48px Josefin Slab', '#fff', 0.5))
-      .then(function(marked) {
-        preview.replaceChild(marked, img);
-        enableFields(awsFields);
-      });
+      if(bDefinedPosXY)
+      {
+        watermark([original])
+        .image(watermark.text.atPos(x, y, strText, strTextSize+'px '+strTextFont, strTextColor, fAlpha))
+        .render()
+        .image(watermark.text.atPos(x2, y2, strText2, strTextSize2+'px '+strTextFont2, strTextColor2, fAlpha2))
+        .render()
+        .image(watermark.text.atPos(x3, y3, strText3, strTextSize3+'px '+strTextFont3, strTextColor3, fAlpha3))
+        .render()
+        .image(watermark.text.atPos(x4, y4, strText4, strTextSize4+'px '+strTextFont4, strTextColor4, fAlpha4))
+        .then(function(marked) {
+          preview.replaceChild(marked, img);
+          enableFields(awsFields);
+        });
+      }
+      else
+      {
+        watermark([original])
+        .image(watermark.text[textPosition](strText, strTextSize+'px '+strTextFont, strTextColor, fAlpha))
+        .then(function(marked) {
+          preview.replaceChild(marked, img);
+          enableFields(awsFields);
+        });
+      }      
     }
     else
     {
-      watermark([original, file])
-      .image(watermark.image[position](0.5))
-      .render()
-      .image(watermark.text[textPosition](strText, '48px Josefin Slab', '#fff', 0.5))
-      .then(function(marked) {
-        preview.replaceChild(marked, img);
-        enableFields(awsFields);
-      });
+      if(bDefinedPosXY)
+      {
+        watermark([original, file])
+        .image(watermark.image.atPos(imgX, imgY, fImgAlpha))
+        .render()
+        .image(watermark.text.atPos(x, y, strText, strTextSize+'px '+strTextFont, strTextColor, fAlpha))
+        .render()
+        .image(watermark.text.atPos(x2, y2, strText2, strTextSize2+'px '+strTextFont2, strTextColor2, fAlpha2))
+        .render()
+        .image(watermark.text.atPos(x3, y3, strText3, strTextSize3+'px '+strTextFont3, strTextColor3, fAlpha3))
+        .render()
+        .image(watermark.text.atPos(x4, y4, strText4, strTextSize4+'px '+strTextFont4, strTextColor4, fAlpha4))
+        .then(function(marked) {
+          preview.replaceChild(marked, img);
+          enableFields(awsFields);
+        });
+      }
+      else
+      {
+        watermark([original, file])
+        .image(watermark.image[position](0.5))
+        .render()
+        .image(watermark.text[textPosition](strText, strTextSize+'px '+strTextFont, strTextColor, fAlpha))
+        .then(function(marked) {
+          preview.replaceChild(marked, img);
+          enableFields(awsFields);
+        });
+      }     
     }
 
 
