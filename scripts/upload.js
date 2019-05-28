@@ -56,13 +56,14 @@
     watermark([file])
       .image(function(target) { return target;  })
       .then(function (img) {
-        if(original)
+        if(! original)
         {
-          document.getElementById('preview').replaceChild(img, original);
+          document.getElementById('preview').appendChild(img);          
         }
         else
         {
-          document.getElementById('preview').appendChild(img);
+          var oldimg = document.getElementById('preview').querySelector('img');
+          document.getElementById('preview').replaceChild(img, oldimg);
         } 
         // original = img;       
       });
